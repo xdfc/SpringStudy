@@ -1,4 +1,4 @@
-package com.fc.com.fc.dynamicproxy;
+package com.fc.dynamicproxy;
 
 
 public class Host implements Rent{

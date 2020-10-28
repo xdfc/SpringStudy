@@ -1,4 +1,4 @@
-package com.fc.com.fc.dynamicproxy;
+package com.fc.dynamicproxy;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
