@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean name="source" class="com.fc.ioc_2.Source" scope="prototype">
+        <property name="fruit" value="橙子"/>
+        <property name="sugar" value="多糖"/>
+        <property name="size" value="超大杯"/>
+    </bean>
+
+
+    <!-- 有多个变量按照顺序 -->
+    <bean id="userFactory" class="com.fc.ioc_1.UserFactory.UserDynamicFactory"/>
+    <bean id="user" factory-bean="userFactory" factory-method="newInstance">
+        <constructor-arg index="0" value="fc"/>
+    </bean>
+
+    <alias name="user" alias="user2"></alias>
+
+    <import resource="context.xml"/>
+
+    <bean id="student" class="com.fc.ioc_2.Student" p:age="15" p:name="jake"/>
+
+</beans>
