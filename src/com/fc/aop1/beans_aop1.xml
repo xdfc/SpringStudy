@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="userService" class="com.fc.aop1.service.UserServiceImpl"/>
+    <bean id="log" class="com.fc.aop1.log.Log"/>
+    <!--执行后通知-->
+    <bean id="afterLog" class="com.fc.aop1.log.AfterLog"/>
+    <aop:config>
+        <!--注意切面表达式的书写，导致warning no match for this type name错误-->
+        <!--类名.*表示类下的所有方法执行，()表示无参，(..)表示任意参数-->
+        <aop:pointcut id="pointcut" expression="execution(* com.fc.aop1.service.UserServiceImpl.*(..))"/>
+        <aop:advisor advice-ref="log" pointcut-ref="pointcut"/>
+        <aop:advisor advice-ref="afterLog" pointcut-ref="pointcut"/>
+    </aop:config>
+</beans>

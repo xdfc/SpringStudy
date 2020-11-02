@@ -1,5 +1,6 @@
 package com.fc.aop1.log;
 
+import org.aspectj.lang.JoinPoint;
 import org.springframework.aop.MethodBeforeAdvice;
 import java.lang.reflect.Method;
 
