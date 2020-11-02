@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="userService" class="com.fc.aop2.impl.UserServiceImpl"/>
+    <bean id="log" class="com.fc.aop2.log.Log"/>
+    <!--自定义类实现aop-->
+    <aop:config>
+        <aop:aspect ref="log">
+            <!--com.fc.aop2.iml下的所有类所有方法的所有变量-->
+            <aop:pointcut id="pointcut" expression="execution(* com.fc.aop2.impl.*.*(..))"/>
+            <aop:before method="before" pointcut-ref="pointcut"/>
+            <aop:after method="after" pointcut-ref="pointcut"/>
+        </aop:aspect>
+    </aop:config>
+</beans>
